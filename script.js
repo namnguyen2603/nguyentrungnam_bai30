@@ -55,3 +55,12 @@ newBtn.addEventListener("click", function () {
 pdfBtn.addEventListener("click", function () {
   html2pdf(content).save(fileNameInput.value);
 });
+
+txtBtn.addEventListener("click", function () {
+  var link = document.createElement("a");
+  var blob = new Blob([content.innerText]);
+  var url = URL.createObjectURL(blob);
+  link.href = url;
+  link.download = fileName.value + ".txt";
+  link.click();
+});
