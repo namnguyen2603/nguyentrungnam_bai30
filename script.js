@@ -31,11 +31,27 @@ colorBtn.addEventListener("input", function () {
 var words = document.getElementById("word-count");
 var characters = document.getElementById("characters-count");
 
-content.addEventListener("input", function () {
+function count() {
   var text = content.innerText;
   var countWords = text.trim().split(/\s+/).length;
   var countCharacters = text.replace(/\s/g, "").length;
 
   words.textContent = countWords;
   characters.textContent = countCharacters;
+}
+content.addEventListener("input", count);
+
+var newBtn = document.querySelector("#new-btn");
+var pdfBtn = document.querySelector("#pdf-btn");
+var txtBtn = document.querySelector("#txt-btn");
+var fileName = document.querySelector("#filename-input");
+
+newBtn.addEventListener("click", function () {
+  content.innerHTML = "";
+
+  count();
+});
+
+pdfBtn.addEventListener("click", function () {
+  html2pdf(content).save(fileNameInput.value);
 });
